@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="branching_vessel" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#">
+    <!-- unit for Potential (Se)-->
+    <units name="J_per_m3">
+        <unit units="joule"/>
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <!-- unit for volume (q)-->
+    <units name="m3">
+        <unit exponent="3" units="metre"/>
+    </units>
+    <units name="per_m3">
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <units name="m3_per_s">
+        <unit exponent="3" units="metre"/>
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="J_per_m6">
+        <unit units="joule"/>
+        <unit exponent="-6" units="metre"/>
+    </units>
+    <!-- unit for Resistance (R)-->
+    <units name="Js_per_m6">
+        <unit units="joule"/>
+        <unit units="second"/>
+        <unit exponent="-6" units="metre"/>
+    </units>
+    <!-- unit for momentum (P)   -->
+    <units name="Js_per_m3">
+        <unit units="joule"/>
+        <unit units="second"/>
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <!-- unit for Inertance (L)-->
+    <units name="Js2_per_m6">
+        <unit units="joule"/>
+        <unit exponent="2" units="second"/>
+        <unit exponent="-6" units="metre"/>
+    </units>
+    <!--unit for Capacitance (C)-->
+    <units name="m6_per_J">
+        <unit exponent="6" units="metre"/>
+        <unit exponent="-1" units="joule"/>
+    </units>
+    <component name="main_1">
+        <variable initial_value="0" name="t" units="second"/>
+        <!-- State variables with initial conditions-->
+        <variable initial_value="10e-6" name="q" units="m3"/>
+        <variable initial_value="4e-6" name="q_1" units="m3"/>
+        <variable initial_value="4e-6" name="q_2" units="m3"/>
+        <variable initial_value="0" name="p" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_1" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_2" units="Js_per_m3"/>
+        <!-- Constitutive parameters-->
+        <variable initial_value="9.331e6" name="Se" units="J_per_m3"/>
+        <variable initial_value="7.998e6" name="Sf1" units="m3_per_s"/>
+        <variable initial_value="7.998e6" name="Sf2" units="m3_per_s"/>
+        <variable initial_value="1.333e6" name="R" units="Js_per_m6"/>
+        <variable initial_value="10.564e6" name="R1" units="Js_per_m6"/>
+        <variable initial_value="10.664e6" name="R2" units="Js_per_m6"/>
+        <variable initial_value="0.123e6" name="L" units="Js2_per_m6"/>
+        <variable initial_value="0.08665e6" name="L1" units="Js2_per_m6"/>
+        <variable initial_value="0.06665e6" name="L2" units="Js2_per_m6"/>
+        <variable initial_value="0.60015e-6" name="C" units="m6_per_J"/>
+        <variable initial_value="0.125281e-6" name="C1" units="m6_per_J"/>
+        <variable initial_value="0.1125281e-6" name="C2" units="m6_per_J"/>
+    </component>
+    <component name="main_2">
+        <variable initial_value="0" name="t" units="second"/>
+        <!-- State variables with initial conditions-->
+        <variable initial_value="10e-6" name="q" units="m3"/>
+        <variable initial_value="4e-6" name="q_1" units="m3"/>
+        <variable initial_value="4e-6" name="q_2" units="m3"/>
+        <variable initial_value="0" name="p" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_1" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_2" units="Js_per_m3"/>
+        <!-- Constitutive parameters-->
+        <variable initial_value="9.331e6" name="Se" units="J_per_m3"/>
+        <variable initial_value="7.998e6" name="Sf1" units="m3_per_s"/>
+        <variable initial_value="7.998e6" name="Sf2" units="m3_per_s"/>
+        <variable initial_value="1.333e6" name="R" units="Js_per_m6"/>
+        <variable initial_value="10.564e6" name="R1" units="Js_per_m6"/>
+        <variable initial_value="10.664e6" name="R2" units="Js_per_m6"/>
+        <variable initial_value="0.123e6" name="L" units="Js2_per_m6"/>
+        <variable initial_value="0.08665e6" name="L1" units="Js2_per_m6"/>
+        <variable initial_value="0.06665e6" name="L2" units="Js2_per_m6"/>
+        <variable initial_value="0.60015e-6" name="C" units="m6_per_J"/>
+        <variable initial_value="0.125281e-6" name="C1" units="m6_per_J"/>
+        <variable initial_value="0.1125281e-6" name="C2" units="m6_per_J"/>
+    </component>
+    <component name="main_3">
+        <variable initial_value="0" name="t" units="second"/>
+        <!-- State variables with initial conditions-->
+        <variable initial_value="10e-6" name="q" units="m3"/>
+        <variable initial_value="4e-6" name="q_1" units="m3"/>
+        <variable initial_value="4e-6" name="q_2" units="m3"/>
+        <variable initial_value="0" name="p" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_1" units="Js_per_m3"/>
+        <variable initial_value="0" name="p_2" units="Js_per_m3"/>
+        <!-- Constitutive parameters-->
+        <variable initial_value="9.331e6" name="Se" units="J_per_m3"/>
+        <variable initial_value="7.998e6" name="Sf1" units="m3_per_s"/>
+        <variable initial_value="7.998e6" name="Sf2" units="m3_per_s"/>
+        <variable initial_value="1.333e6" name="R" units="Js_per_m6"/>
+        <variable initial_value="10.564e6" name="R1" units="Js_per_m6"/>
+        <variable initial_value="10.664e6" name="R2" units="Js_per_m6"/>
+        <variable initial_value="0.123e6" name="L" units="Js2_per_m6"/>
+        <variable initial_value="0.08665e6" name="L1" units="Js2_per_m6"/>
+        <variable initial_value="0.06665e6" name="L2" units="Js2_per_m6"/>
+        <variable initial_value="0.60015e-6" name="C" units="m6_per_J"/>
+        <variable initial_value="0.125281e-6" name="C1" units="m6_per_J"/>
+        <variable initial_value="0.1125281e-6" name="C2" units="m6_per_J"/>
+    </component>
+    <component name="main_4">
+        <variable initial_value="0" name="t" units="second"/>
+        <!-- State variables with initial conditions-->
+        <variable initial_value="5e-6" name="q" units="m3"/>
+        <variable initial_value="5e-6" name="q_1" units="m3"/>
+        <variable initial_value="5e-6" name="q_2" units="m3"/>
+        <variable initial_value="0.1" name="p" units="Js_per_m3"/>
+        <variable initial_value="0.01" name="p_1" units="Js_per_m3"/>
+        <variable initial_value="0.01" name="p_2" units="Js_per_m3"/>
+        <!-- Constitutive parameters-->
+        <variable initial_value="8.331e6" name="Se" units="J_per_m3"/>
+        <variable initial_value="6.998e6" name="Sf1" units="m3_per_s"/>
+        <variable initial_value="4.998e6" name="Sf2" units="m3_per_s"/>
+        <variable initial_value="2.333e6" name="R" units="Js_per_m6"/>
+        <variable initial_value="9.564e6" name="R1" units="Js_per_m6"/>
+        <variable initial_value="9.664e6" name="R2" units="Js_per_m6"/>
+        <variable initial_value="0.323e6" name="L" units="Js2_per_m6"/>
+        <variable initial_value="0.1665e6" name="L1" units="Js2_per_m6"/>
+        <variable initial_value="0.13665e6" name="L2" units="Js2_per_m6"/>
+        <variable initial_value="0.50015e-6" name="C" units="m6_per_J"/>
+        <variable initial_value="0.115281e-6" name="C1" units="m6_per_J"/>
+        <variable initial_value="0.1825281e-6" name="C2" units="m6_per_J"/>
+    </component>
+</model>
