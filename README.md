@@ -13,3 +13,5 @@ The inputs of the function would be the “CellML file name”, “arbitrary nam
 In this file, 4 models are connected together as an instance.
 
 The schematic of this connection is illustrated in the file "Sample_4_modules_connection.png".
+
+The sample CellML file which was used for this example is uploaded as well ==> "branching_vessel_ex.cellml"
