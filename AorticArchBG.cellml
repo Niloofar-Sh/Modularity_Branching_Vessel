@@ -1,0 +1,1469 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="CardiovascularSystem" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#">
+    <units name="mm">
+        <unit prefix="milli" units="metre"/>
+    </units>
+    <units name="m3_per_s">
+        <unit exponent="3" units="metre"/>
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="J_per_m">
+        <unit units="joule"/>
+        <unit exponent="-1" units="metre"/>
+    </units>
+    <units name="J_per_m3">
+        <unit units="joule"/>
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <units name="per_m3">
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <units name="per_s">
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="per_m">
+        <unit exponent="-1" units="metre"/>
+    </units>
+    <units name="J_s_per_m3">
+        <unit units="joule"/>
+        <unit units="second"/>
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <units name="J_s2_per_m5">
+        <unit units="joule"/>
+        <unit exponent="2" units="second"/>
+        <unit exponent="-5" units="metre"/>
+    </units>
+    <units name="m6_per_J">
+        <unit exponent="6" units="metre"/>
+        <unit exponent="-1" units="joule"/>
+    </units>
+    <units name="J_s_per_m6">
+        <unit units="joule"/>
+        <unit units="second"/>
+        <unit exponent="-6" units="metre"/>
+    </units>
+    <units name="J_s2_per_m6">
+        <unit units="joule"/>
+        <unit exponent="2" units="second"/>
+        <unit exponent="-6" units="metre"/>
+    </units>
+    <units name="s_per_m3">
+        <unit units="second"/>
+        <unit exponent="-3" units="metre"/>
+    </units>
+    <component name="aortic_root_module">
+        <variable cmeta:id="id_000000001" name="t" public_interface="in" units="second" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000006" initial_value="0.004" name="mu" units="J_s_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000010" initial_value="1050" name="rho" units="J_s2_per_m5" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000014" name="E" public_interface="in" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000018" name="E_m" public_interface="out" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000022" name="l" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000026" name="length" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000030" name="h" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000037" name="thickness" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000038" name="r" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000039" name="radius" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000046" name="I" public_interface="out" units="J_s2_per_m6" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable name="C" public_interface="out" units="m6_per_J"/>
+        <variable name="R" public_interface="out" units="J_s_per_m6"/>
+        <variable name="R_v" public_interface="out" units="J_s_per_m6"/>
+        <variable initial_value="0.2802" name="a" units="dimensionless"/>
+        <variable initial_value="-505.3" name="b" units="per_m"/>
+        <variable initial_value="0.1324" name="c" units="dimensionless"/>
+        <variable initial_value="-11.14" name="d" units="per_m"/>
+        <variable name="v_in" public_interface="in" units="m3_per_s"/>
+        <variable name="u" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="u_C" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v" public_interface="out" units="m3_per_s"/>
+        <variable name="u_d" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="u_C_d" public_interface="out" units="J_per_m3"/>
+        <variable name="v_out" public_interface="in" units="m3_per_s"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>h</ci>
+                <apply>
+                    <times/>
+                    <ci>r</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>a</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>b</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>c</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>d</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>rho</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>C</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">3</cn>
+                        </apply>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>E</ci>
+                        <ci>h</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">8</cn>
+                        <ci>mu</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">4</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R_v</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="second">0.01</cn>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>length</ci>
+                <ci>l</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>E_m</ci>
+                <ci>E</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>radius</ci>
+                <ci>r</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>thickness</ci>
+                <ci>h</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u</ci>
+                            <ci>u_d</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>R</ci>
+                            <ci>v</ci>
+                        </apply>
+                    </apply>
+                    <ci>I</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>u_C</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>v_in</ci>
+                        <ci>v</ci>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>C</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>u_C_d</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>v</ci>
+                        <ci>v_out</ci>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>C</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>u</ci>
+                <apply>
+                    <plus/>
+                    <ci>u_C</ci>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <ci>R_v</ci>
+                        <apply>
+                            <minus/>
+                            <ci>v_in</ci>
+                            <ci>v</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>u_d</ci>
+                <apply>
+                    <plus/>
+                    <ci>u_C_d</ci>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <ci>R_v</ci>
+                        <apply>
+                            <minus/>
+                            <ci>v</ci>
+                            <ci>v_out</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+    <component name="ascending_aorta_module">
+        <variable cmeta:id="id_000000002" name="t" public_interface="in" units="second" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000007" initial_value="0.004" name="mu" units="J_s_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000011" initial_value="1050" name="rho" units="J_s2_per_m5" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000015" name="E" public_interface="in" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000019" name="E_m" public_interface="out" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000023" name="l" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000027" name="length" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000031" name="h" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000036" name="thickness" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000040" name="r" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000041" name="radius" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000047" name="I" public_interface="out" units="J_s2_per_m6" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable name="C" public_interface="out" units="m6_per_J"/>
+        <variable name="R" public_interface="out" units="J_s_per_m6"/>
+        <variable name="R_v" public_interface="out" units="J_s_per_m6"/>
+        <variable initial_value="0.2802" name="a" units="dimensionless"/>
+        <variable initial_value="-505.3" name="b" units="per_m"/>
+        <variable initial_value="0.1324" name="c" units="dimensionless"/>
+        <variable initial_value="-11.14" name="d" units="per_m"/>
+        <variable name="u_in" public_interface="in" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v" public_interface="out" units="m3_per_s"/>
+        <variable name="u" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="u_C" public_interface="out" units="J_per_m3"/>
+        <variable name="v_out_1" public_interface="in" units="m3_per_s"/>
+        <variable name="v_out_2" public_interface="in" units="m3_per_s"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>h</ci>
+                <apply>
+                    <times/>
+                    <ci>r</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>a</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>b</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>c</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>d</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>rho</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>C</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">3</cn>
+                        </apply>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>E</ci>
+                        <ci>h</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">8</cn>
+                        <ci>mu</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">4</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R_v</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="second">0.01</cn>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>length</ci>
+                <ci>l</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>E_m</ci>
+                <ci>E</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>radius</ci>
+                <ci>r</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>thickness</ci>
+                <ci>h</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u_in</ci>
+                            <ci>u</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>R</ci>
+                            <ci>v</ci>
+                        </apply>
+                    </apply>
+                    <ci>I</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>u_C</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>v</ci>
+                            <ci>v_out_1</ci>
+                        </apply>
+                        <ci>v_out_2</ci>
+                    </apply>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>u</ci>
+                <apply>
+                    <plus/>
+                    <ci>u_C</ci>
+                    <apply>
+                        <times/>
+                        <ci>R_v</ci>
+                        <apply>
+                            <minus/>
+                            <apply>
+                                <minus/>
+                                <ci>v</ci>
+                                <ci>v_out_1</ci>
+                            </apply>
+                            <ci>v_out_2</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+    <component name="aortic_arch_I_module">
+        <variable cmeta:id="id_000000003" name="t" public_interface="in" units="second" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000008" initial_value="0.004" name="mu" units="J_s_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000012" initial_value="1050" name="rho" units="J_s2_per_m5" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000016" name="E" public_interface="in" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000020" name="E_m" public_interface="out" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000024" name="l" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000028" name="length" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000032" name="h" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000035" name="thickness" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000042" name="r" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000043" name="radius" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000048" name="I" public_interface="out" units="J_s2_per_m6" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable name="C" public_interface="out" units="m6_per_J"/>
+        <variable name="R" public_interface="out" units="J_s_per_m6"/>
+        <variable name="R_v" public_interface="out" units="J_s_per_m6"/>
+        <variable initial_value="0.2802" name="a" units="dimensionless"/>
+        <variable initial_value="-505.3" name="b" units="per_m"/>
+        <variable initial_value="0.1324" name="c" units="dimensionless"/>
+        <variable initial_value="-11.14" name="d" units="per_m"/>
+        <variable name="u_in" public_interface="in" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v" public_interface="out" units="m3_per_s"/>
+        <variable name="u" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="u_C" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v_d" public_interface="out" units="m3_per_s"/>
+        <variable name="u_out" public_interface="in" units="J_per_m3"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>h</ci>
+                <apply>
+                    <times/>
+                    <ci>r</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>a</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>b</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>c</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>d</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>rho</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>C</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">3</cn>
+                        </apply>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>E</ci>
+                        <ci>h</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">8</cn>
+                        <ci>mu</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">4</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R_v</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="second">0.01</cn>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>length</ci>
+                <ci>l</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>E_m</ci>
+                <ci>E</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>radius</ci>
+                <ci>r</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>thickness</ci>
+                <ci>h</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u_in</ci>
+                            <ci>u</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <divide/>
+                                <ci>R</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                            <ci>v</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>I</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>u_C</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>v</ci>
+                        <ci>v_d</ci>
+                    </apply>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>u</ci>
+                <apply>
+                    <plus/>
+                    <ci>u_C</ci>
+                    <apply>
+                        <times/>
+                        <ci>R_v</ci>
+                        <apply>
+                            <minus/>
+                            <ci>v</ci>
+                            <ci>v_d</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v_d</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u</ci>
+                            <ci>u_out</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <divide/>
+                                <ci>R</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                            <ci>v_d</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>I</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+    <component name="brachiocephalic_module">
+        <variable cmeta:id="id_000000004" name="t" public_interface="in" units="second" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000009" initial_value="0.004" name="mu" units="J_s_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000013" initial_value="1050" name="rho" units="J_s2_per_m5" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000017" name="E" public_interface="in" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000021" name="E_m" public_interface="out" units="J_per_m3" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000025" name="l" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000029" name="length" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000033" name="h" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000034" name="thickness" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000044" name="r" public_interface="in" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000045" name="radius" public_interface="out" units="metre" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable cmeta:id="id_000000049" name="I" public_interface="out" units="J_s2_per_m6" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable name="C" public_interface="out" units="m6_per_J"/>
+        <variable name="R" public_interface="out" units="J_s_per_m6"/>
+        <variable name="R_v" public_interface="out" units="J_s_per_m6"/>
+        <variable initial_value="0.2802" name="a" units="dimensionless"/>
+        <variable initial_value="-505.3" name="b" units="per_m"/>
+        <variable initial_value="0.1324" name="c" units="dimensionless"/>
+        <variable initial_value="-11.14" name="d" units="per_m"/>
+        <variable name="u_in" public_interface="in" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v" public_interface="out" units="m3_per_s"/>
+        <variable name="u" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="u_C" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.0" name="v_d" public_interface="out" units="m3_per_s"/>
+        <variable name="u_out" public_interface="in" units="J_per_m3"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>h</ci>
+                <apply>
+                    <times/>
+                    <ci>r</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>a</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>b</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>c</ci>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <times/>
+                                    <ci>d</ci>
+                                    <ci>r</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>rho</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>C</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2</cn>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">3</cn>
+                        </apply>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>E</ci>
+                        <ci>h</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">8</cn>
+                        <ci>mu</ci>
+                        <ci>l</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <pi/>
+                        <apply>
+                            <power/>
+                            <ci>r</ci>
+                            <cn cellml:units="dimensionless">4</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>R_v</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="second">0.01</cn>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>length</ci>
+                <ci>l</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>E_m</ci>
+                <ci>E</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>radius</ci>
+                <ci>r</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>thickness</ci>
+                <ci>h</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u_in</ci>
+                            <ci>u</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <divide/>
+                                <ci>R</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                            <ci>v</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>I</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>u_C</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <ci>v</ci>
+                        <ci>v_d</ci>
+                    </apply>
+                    <ci>C</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>u</ci>
+                <apply>
+                    <plus/>
+                    <ci>u_C</ci>
+                    <apply>
+                        <times/>
+                        <ci>R_v</ci>
+                        <apply>
+                            <minus/>
+                            <ci>v</ci>
+                            <ci>v_d</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>t</ci>
+                    </bvar>
+                    <ci>v_d</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <minus/>
+                            <ci>u</ci>
+                            <ci>u_out</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <divide/>
+                                <ci>R</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                            <ci>v_d</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <ci>I</ci>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+    <connection>
+        <map_components component_1="Systemic" component_2="aortic_root_module"/>
+        <map_variables variable_1="v_aov" variable_2="v_in"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
+    <connection>
+        <map_components component_1="Systemic" component_2="ascending_aorta_module"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
+    <connection>
+        <map_components component_1="Systemic" component_2="aortic_arch_I_module"/>
+        <map_variables variable_1="u_ven" variable_2="u_out"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
+    <connection>
+        <map_components component_1="Systemic" component_2="brachiocephalic_module"/>
+        <map_variables variable_1="u_ven" variable_2="u_out"/>
+        <map_variables variable_1="t" variable_2="t"/>
+    </connection>
+    <connection>
+        <map_components component_1="aortic_root_module" component_2="ascending_aorta_module"/>
+        <map_variables variable_1="v_out" variable_2="v"/>
+        <map_variables variable_1="u" variable_2="u_in"/>
+    </connection>
+    <connection>
+        <map_components component_1="ascending_aorta_module" component_2="aortic_arch_I_module"/>
+        <map_variables variable_1="v_out_1" variable_2="v"/>
+        <map_variables variable_1="u" variable_2="u_in"/>
+    </connection>
+    <connection>
+        <map_components component_1="ascending_aorta_module" component_2="brachiocephalic_module"/>
+        <map_variables variable_1="v_out_2" variable_2="v"/>
+        <map_variables variable_1="u" variable_2="u_in"/>
+    </connection>
+    <connection>
+        <map_components component_1="Parameters_Systemic" component_2="aortic_root_module"/>
+        <map_variables variable_1="l_aortic_root" variable_2="l"/>
+        <map_variables variable_1="E_aortic_root" variable_2="E"/>
+        <map_variables variable_1="r_aortic_root" variable_2="r"/>
+    </connection>
+    <connection>
+        <map_components component_1="Parameters_Systemic" component_2="ascending_aorta_module"/>
+        <map_variables variable_1="l_ascending_aorta" variable_2="l"/>
+        <map_variables variable_1="E_ascending_aorta" variable_2="E"/>
+        <map_variables variable_1="r_ascending_aorta" variable_2="r"/>
+    </connection>
+    <connection>
+        <map_components component_1="Parameters_Systemic" component_2="aortic_arch_I_module"/>
+        <map_variables variable_1="l_aortic_arch_I" variable_2="l"/>
+        <map_variables variable_1="E_aortic_arch_I" variable_2="E"/>
+        <map_variables variable_1="r_aortic_arch_I" variable_2="r"/>
+    </connection>
+    <connection>
+        <map_components component_1="Parameters_Systemic" component_2="brachiocephalic_module"/>
+        <map_variables variable_1="l_brachiocephalic" variable_2="l"/>
+        <map_variables variable_1="E_brachiocephalic" variable_2="E"/>
+        <map_variables variable_1="r_brachiocephalic" variable_2="r"/>
+    </connection>
+    <component name="Systemic">
+        <variable cmeta:id="id_000000005" name="t" public_interface="out" units="second" xmlns:cmeta="http://www.cellml.org/metadata/1.0#"/>
+        <variable name="mt" units="second"/>
+        <variable initial_value="1.0" name="T" units="second"/>
+        <variable name="v_aov" public_interface="out" units="m3_per_s"/>
+        <variable initial_value="0.0" name="u_ven" public_interface="out" units="J_per_m3"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>mt</ci>
+                <apply>
+                    <minus/>
+                    <ci>t</ci>
+                    <apply>
+                        <times/>
+                        <ci>T</ci>
+                        <apply>
+                            <floor/>
+                            <apply>
+                                <divide/>
+                                <ci>t</ci>
+                                <ci>T</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>v_aov</ci>
+                <piecewise>
+                    <piece>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="m3_per_s" type="e-notation">0.1<sep/>-6</cn>
+                            <apply>
+                                <sin/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <times/>
+                                        <pi/>
+                                        <ci>mt</ci>
+                                    </apply>
+                                    <cn cellml:units="second">0.3</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <leq/>
+                            <ci>mt</ci>
+                            <cn cellml:units="second">0.3</cn>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="m3_per_s">0.0</cn>
+                        <apply>
+                            <gt/>
+                            <ci>mt</ci>
+                            <cn cellml:units="second">0.3</cn>
+                        </apply>
+                    </piece>
+                </piecewise>
+            </apply>
+        </math>
+    </component>
+    <component name="Parameters_Systemic">
+        <variable initial_value="6.43e-03" name="r_aortic_root" public_interface="out" units="metre"/>
+        <variable initial_value="5.03e-03" name="r_ascending_aorta" public_interface="out" units="metre"/>
+        <variable initial_value="3.56e-03" name="r_aortic_arch_I" public_interface="out" units="metre"/>
+        <variable initial_value="2.75e-03" name="r_brachiocephalic" public_interface="out" units="metre"/>
+        <variable initial_value="12.0e-03" name="l_aortic_root" public_interface="out" units="metre"/>
+        <variable initial_value="12.33e-03" name="l_ascending_aorta" public_interface="out" units="metre"/>
+        <variable initial_value="7.785e-03" name="l_aortic_arch_I" public_interface="out" units="metre"/>
+        <variable initial_value="15.74e-03" name="l_brachiocephalic" public_interface="out" units="metre"/>
+        <variable initial_value="0.6e+6" name="E_aortic_root" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.6e+6" name="E_ascending_aorta" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.6e+6" name="E_aortic_arch_I" public_interface="out" units="J_per_m3"/>
+        <variable initial_value="0.6e+6" name="E_brachiocephalic" public_interface="out" units="J_per_m3"/>
+    </component>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about="#id_000000001">
+            <isVersionOf xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01023"/>
+            </isVersionOf>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000002">
+            <isVersionOf xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01023"/>
+            </isVersionOf>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000003">
+            <isVersionOf xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01023"/>
+            </isVersionOf>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000004">
+            <isVersionOf xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01023"/>
+            </isVersionOf>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000005">
+            <isVersionOf xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01023"/>
+            </isVersionOf>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000006">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00112"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000007">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00112"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000008">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00112"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000009">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00112"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000010">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01190"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000011">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01190"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000012">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01190"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000013">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01190"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000014">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000015">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000016">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000017">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000018">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000019">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000020">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000021">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_01189"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000022">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000023">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000024">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000025">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000026">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000027">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000028">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000029">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00451"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000030">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000031">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000032">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000033">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000034">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000035">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000036">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000037">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00039"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000038">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000039">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000040">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000041">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000042">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000043">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000044">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000045">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/fma/FMA:23463"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000046">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00104"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000047">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00104"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000048">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00104"/>
+            </encodes>
+        </rdf:Description>
+        <rdf:Description rdf:about="#id_000000049">
+            <encodes xmlns="http://biomodels.net/biology-qualifiers/">
+                <rdf:Description rdf:about="http://identifiers.org/opb/OPB_00104"/>
+            </encodes>
+        </rdf:Description>
+    </rdf:RDF>
+</model>
